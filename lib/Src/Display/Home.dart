@@ -6,9 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Home.dart';
 import 'Pages/Admin.dart';
 import 'Pages/Donor.dart';
-import 'Pages/Ngo.dart';
-
-
+import 'Pages/Distributor.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,10 +20,10 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         body: SafeArea(
-          child: Column(
-      //mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
+      child: Column(
+        //mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
           welcome(),
           if (Common.usertype == "NGO")
             Expanded(child: NgoPage())
@@ -33,9 +31,9 @@ class _HomePageState extends State<HomePage> {
             Expanded(child: AdminPage())
           else
             Expanded(child: new DonorPage())
-      ],
-    ),
-        ));
+        ],
+      ),
+    ));
   }
 
   welcome() {

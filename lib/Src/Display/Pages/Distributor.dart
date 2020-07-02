@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fundapp/Src/Display/Pages/Distributor/Branch.dart';
+import 'package:fundapp/Src/Display/Pages/Distributor/ContractDonor.dart';
+import 'package:fundapp/Src/Display/Pages/Distributor/Event.dart';
+import 'package:fundapp/Src/Display/Pages/Distributor/SSLPage.dart';
 
 import 'Admin/Employ.dart';
-import 'NGO/Branch.dart';
-import 'NGO/Home.dart';
 
 class NgoPage extends StatefulWidget {
   @override
@@ -10,18 +12,18 @@ class NgoPage extends StatefulWidget {
 }
 
 class _NgoPageState extends State<NgoPage> {
-  var tab = "Home";
+  var tab = "Contract Donor";
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         tabs(),
-        tab == "Home"
-            ? Expanded(child: Home())
-            : tab == "Branch"
-                ? Expanded(child: new Branch())
-                : Expanded(child: new Employ())
+        tab == "Contract Donor"
+            ? Expanded(child: ContractDonor())
+            : tab == "Event"
+                ? Expanded(child: new Event())
+                : Expanded(child: new SSlPage())
       ],
     );
   }
@@ -34,14 +36,15 @@ class _NgoPageState extends State<NgoPage> {
         InkWell(
           onTap: () {
             setState(() {
-              tab = "Home";
+              tab = "Contract Donor";
             });
           },
           child: Container(
             // width: 50,
             height: 24,
             decoration: BoxDecoration(
-                color: tab == "Home" ? Color(0xffFF5126) : Colors.white,
+                color:
+                    tab == "Contract Donor" ? Color(0xffFF5126) : Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
@@ -50,9 +53,9 @@ class _NgoPageState extends State<NgoPage> {
 
             child: Center(
                 child: Text(
-              "   Home    ",
+              " Contract Donor ",
               style: TextStyle(
-                  color: tab == "Home" ? Colors.white : Colors.black,
+                  color: tab == "Contract Donor" ? Colors.white : Colors.black,
                   fontWeight: FontWeight.w500),
             )),
           ),
@@ -61,14 +64,14 @@ class _NgoPageState extends State<NgoPage> {
         InkWell(
           onTap: () {
             setState(() {
-              tab = "Branch";
+              tab = "Event";
             });
           },
           child: Container(
             // width: 50,
             height: 24,
             decoration: BoxDecoration(
-                color: tab == "Branch" ? Color(0xffFF5126) : Colors.white,
+                color: tab == "Event" ? Color(0xffFF5126) : Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
@@ -80,9 +83,9 @@ class _NgoPageState extends State<NgoPage> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "   Branch    ",
+                    "   Event    ",
                     style: TextStyle(
-                        color: tab == "Branch" ? Colors.white : Colors.black,
+                        color: tab == "Event" ? Colors.white : Colors.black,
                         fontWeight: FontWeight.w500),
                   ),
                 ),
@@ -94,14 +97,15 @@ class _NgoPageState extends State<NgoPage> {
         InkWell(
           onTap: () {
             setState(() {
-              tab = "Employ";
+              tab = "Transfer Money";
             });
           },
           child: Container(
             // width: 50,
             height: 24,
             decoration: BoxDecoration(
-                color: tab == "Employ" ? Color(0xffFF5126) : Colors.white,
+                color:
+                    tab == "Transfer Money" ? Color(0xffFF5126) : Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
@@ -110,9 +114,9 @@ class _NgoPageState extends State<NgoPage> {
 
             child: Center(
                 child: Text(
-              "   Employ    ",
+              "   Transfer Money    ",
               style: TextStyle(
-                  color: tab == "Employ" ? Colors.white : Colors.black,
+                  color: tab == "Transfer Money" ? Colors.white : Colors.black,
                   fontWeight: FontWeight.w500),
             )),
           ),

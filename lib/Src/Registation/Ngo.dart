@@ -70,8 +70,6 @@ class _NgoRegistationState extends State<NgoRegistation> {
             ),
           ),
         ),
-
-
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -84,13 +82,12 @@ class _NgoRegistationState extends State<NgoRegistation> {
               decoration: new InputDecoration(
                 filled: true,
                 //fillColor: Colors.grey[300],
-                hintText: 'Govt Documents',
+                hintText: 'Phone Number',
                 border: InputBorder.none,
               ),
             ),
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -185,9 +182,7 @@ class _NgoRegistationState extends State<NgoRegistation> {
                         _govt_doccuments_approved_controller.value.text,
                         _serial_number_controller.value.text,
                         _refferance_id_controller.value.text,
-                        _phone_number_controller.value.text
-
-                )
+                        _phone_number_controller.value.text)
                     .then((value) {
                   print("The value is ${value}");
 
@@ -260,7 +255,7 @@ class _NgoRegistationState extends State<NgoRegistation> {
     sp.setString("user", "NGO");
     sp.setString("gmail", _email_conroller.value.text);
 
-    Navigator.of(context)
-        .pushReplacement(new MaterialPageRoute(builder: (context) => HomePage()));
+    Navigator.of(context).pushReplacement(
+        new MaterialPageRoute(builder: (context) => HomePage()));
   }
 }
