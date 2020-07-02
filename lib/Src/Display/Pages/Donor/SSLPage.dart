@@ -22,12 +22,7 @@ class _SSlPageState extends State<SSlPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
-
-
-
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -36,12 +31,9 @@ class _SSlPageState extends State<SSlPage> {
           ),
           child: Column(
             children: [
-
               SizedBox(
                 height: 20,
               ),
-
-
               SizedBox(
                 height: 10,
               ),
@@ -228,7 +220,7 @@ class _SSlPageState extends State<SSlPage> {
                   height: 15,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(50)),
-                    color:  Colors.white,
+                    color: Colors.white,
                     border: Border.all(color: Colors.black),
                   ),
                   child: account_type == "business"
