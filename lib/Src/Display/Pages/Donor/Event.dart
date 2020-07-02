@@ -4,12 +4,12 @@ import 'package:fundapp/Src/Widget/messageCardWidget.dart';
 import 'package:fundapp/Src/model/Post.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-class Home extends StatefulWidget {
+class Event extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _EventState createState() => _EventState();
 }
 
-class _HomeState extends State<Home> {
+class _EventState extends State<Event> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(

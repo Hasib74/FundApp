@@ -11,6 +11,8 @@ class Common {
   static var employ = "Employ";
   static var distributor = "Distributor";
   static var admin = "Admin";
+  static var message = "Message";
+  static var post = "Post";
 
   static ShowDialog(title, content, context) {
     return showDialog<void>(

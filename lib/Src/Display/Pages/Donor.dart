@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundapp/Src/Display/Pages/Donor/Distributor.dart';
+import 'package:fundapp/Src/Display/Pages/Donor/Event.dart';
+import 'package:fundapp/Src/Display/Pages/Donor/SSLPage.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
 
 import 'Admin/Employ.dart';
@@ -22,9 +24,9 @@ class _DonorPageState extends State<DonorPage> {
         tabs(),
         tab == "Home"
             ? Expanded(child: Home())
-            : tab == "Distributor"
-                ? Expanded(child: new Distributor())
-                : Expanded(child: new Employ()),
+            : tab == "Event"
+                ? Expanded(child: new Event())
+                : Expanded(child: new SSlPage()),
       ],
     );
   }
@@ -64,14 +66,14 @@ class _DonorPageState extends State<DonorPage> {
         InkWell(
           onTap: () {
             setState(() {
-              tab = "Distributor";
+              tab = "Event";
             });
           },
           child: Container(
             // width: 50,
             height: 24,
             decoration: BoxDecoration(
-                color: tab == "Distributor" ? Color(0xffFF5126) : Colors.white,
+                color: tab == "Event" ? Color(0xffFF5126) : Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
@@ -83,10 +85,9 @@ class _DonorPageState extends State<DonorPage> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "   Distributor    ",
+                    "   Event    ",
                     style: TextStyle(
-                        color:
-                            tab == "Distributor" ? Colors.white : Colors.black,
+                        color: tab == "Event" ? Colors.white : Colors.black,
                         fontWeight: FontWeight.w500),
                   ),
                 ),
@@ -98,14 +99,15 @@ class _DonorPageState extends State<DonorPage> {
         InkWell(
           onTap: () {
             setState(() {
-              tab = "Employ";
+              tab = "Fund Transfer";
             });
           },
           child: Container(
             // width: 50,
             height: 24,
             decoration: BoxDecoration(
-                color: tab == "Employ" ? Color(0xffFF5126) : Colors.white,
+                color:
+                    tab == "Fund Transfer" ? Color(0xffFF5126) : Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
@@ -114,9 +116,9 @@ class _DonorPageState extends State<DonorPage> {
 
             child: Center(
                 child: Text(
-              "   Employ    ",
+              "   Fund Transfer    ",
               style: TextStyle(
-                  color: tab == "Employ" ? Colors.white : Colors.black,
+                  color: tab == "Fund Transfer" ? Colors.white : Colors.black,
                   fontWeight: FontWeight.w500),
             )),
           ),

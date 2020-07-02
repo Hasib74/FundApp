@@ -1,10 +1,25 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
+import 'package:intl/intl.dart';
 
 class FB {
+  getUnicKey() {
+    return DateTime.now()
+        .toIso8601String()
+        .replaceAll(":", "")
+        .replaceAll("-", "")
+        .replaceAll("#", "")
+        .replaceAll("[", "")
+        .replaceAll("]", "")
+        .replaceAll("nul", "")
+        .replaceAll("\$", "")
+        .replaceAll(".", "")
+        .toString();
+  }
+
   Future<String> registationForDonor(name, email, passportOrNid, mailingAddress,
-      reffernce, TextEditingController password_controller) async {
+      reffernce, TextEditingController phone_number_controller) async {
     var status;
 
     await FirebaseDatabase.instance
@@ -28,7 +43,8 @@ class FB {
           "Passport Or Nid": passportOrNid,
           "Mailing Address": mailingAddress,
           "Refferance": reffernce,
-          "password": password_controller.value.text
+          "phone_number": phone_number_controller.value.text,
+          "approved": false
         }).then((value) {
           status = "Success";
 
@@ -48,8 +64,8 @@ class FB {
 
   ///Registrations For NGO
 
-  Future<String> registationForNgo(
-      name, email, govtDoccuments, serialNumber, reffernce) async {
+  Future<String> registationForNgo(name, email, govtDoccuments, serialNumber,
+      reffernce, phone_number) async {
     var status;
 
     await FirebaseDatabase.instance
@@ -72,7 +88,9 @@ class FB {
           "Email": email,
           "Govt Doccuments": govtDoccuments,
           "Serial Number": serialNumber,
-          "Refferance": reffernce
+          "Refferance": reffernce,
+          "phone_number": phone_number,
+          "approved": false
         }).then((value) {
           status = "Success";
 
@@ -264,5 +282,48 @@ class FB {
           .child(gmail.toString().replaceAll(".", ""))
           .remove();
     }
+  }
+
+  store_message(message) {
+    final df = new DateFormat('dd-MM-yyyy  hh:mm a');
+    int myvalue = 1558432747;
+    print(df.format(new DateTime.fromMillisecondsSinceEpoch(myvalue * 1000)));
+
+    FirebaseDatabase.instance
+        .reference()
+        .child(Common.message)
+        .child(Common.gmail.replaceAll(".", " "))
+        .child(getUnicKey())
+        .set({
+      "date and time": "${getCurrentDateAndTime()} ",
+      "message": message,
+    });
+  }
+
+  store_post(message) {
+    final df = new DateFormat('dd-MM-yyyy  hh:mm a');
+    int myvalue = 1558432747;
+    print(df.format(new DateTime.fromMillisecondsSinceEpoch(myvalue * 1000)));
+
+    FirebaseDatabase.instance
+        .reference()
+        .child(Common.post)
+        .child(Common.gmail.replaceAll(".", " "))
+        .child(getUnicKey())
+        .set({
+      "date and time": "${getCurrentDateAndTime()} ",
+      "message": message,
+    });
+  }
+
+  getCurrentDateAndTime() {
+    var now = new DateTime.now();
+    var formatter = new DateFormat('dd-MM-yyyy');
+    String formattedTime = DateFormat('kk:mm:a').format(now);
+    String formattedDate = formatter.format(now);
+    print(formattedTime);
+    print(formattedDate);
+
+    return "${formattedDate} \n ${formattedTime}";
   }
 }

@@ -16,6 +16,7 @@ class _NgoRegistationState extends State<NgoRegistation> {
   var _serial_number_controller = new TextEditingController();
   var _email_conroller = new TextEditingController();
   var _refferance_id_controller = new TextEditingController();
+  var _phone_number_controller = new TextEditingController();
 
   bool isLoading = false;
 
@@ -36,7 +37,8 @@ class _NgoRegistationState extends State<NgoRegistation> {
         _email_conroller.value.text.isNotEmpty &&
         _govt_doccuments_approved_controller.value.text.isNotEmpty &&
         _serial_number_controller.value.text.isNotEmpty &&
-        _refferance_id_controller.value.text.isNotEmpty) {
+        _refferance_id_controller.value.text.isNotEmpty &&
+        _phone_number_controller.value.text.isNotEmpty) {
       if (_email_conroller.value.text.contains("@")) {
         return true;
       } else {
@@ -68,6 +70,27 @@ class _NgoRegistationState extends State<NgoRegistation> {
             ),
           ),
         ),
+
+
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Color(0xffF7F7F7),
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+            ),
+            child: TextField(
+              controller: _phone_number_controller,
+              decoration: new InputDecoration(
+                filled: true,
+                //fillColor: Colors.grey[300],
+                hintText: 'Govt Documents',
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+        ),
+
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
@@ -161,7 +184,10 @@ class _NgoRegistationState extends State<NgoRegistation> {
                         _email_conroller.value.text,
                         _govt_doccuments_approved_controller.value.text,
                         _serial_number_controller.value.text,
-                        _refferance_id_controller.value.text)
+                        _refferance_id_controller.value.text,
+                        _phone_number_controller.value.text
+
+                )
                     .then((value) {
                   print("The value is ${value}");
 
@@ -235,6 +261,6 @@ class _NgoRegistationState extends State<NgoRegistation> {
     sp.setString("gmail", _email_conroller.value.text);
 
     Navigator.of(context)
-        .pushReplacement(new MaterialPageRoute(builder: (context) => Home()));
+        .pushReplacement(new MaterialPageRoute(builder: (context) => HomePage()));
   }
 }

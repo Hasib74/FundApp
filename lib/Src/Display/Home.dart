@@ -8,14 +8,7 @@ import 'Pages/Admin.dart';
 import 'Pages/Donor.dart';
 import 'Pages/Ngo.dart';
 
-class Home extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
-  }
-}
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,21 +20,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     print(Common.usertype);
 
-    return SafeArea(
-      child: Scaffold(
-          body: Column(
-        //mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+    return Scaffold(
+        body: SafeArea(
+          child: Column(
+      //mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
           welcome(),
-          Common.usertype == "NGO"
-              ? Expanded(child: NgoPage())
-              : Common.usertype == "Admin"
-                  ? Expanded(child: AdminPage())
-                  : Expanded(child: new DonorPage())
-        ],
-      )),
-    );
+          if (Common.usertype == "NGO")
+            Expanded(child: NgoPage())
+          else if (Common.usertype == "Admin")
+            Expanded(child: AdminPage())
+          else
+            Expanded(child: new DonorPage())
+      ],
+    ),
+        ));
   }
 
   welcome() {

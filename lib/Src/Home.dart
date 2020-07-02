@@ -7,6 +7,7 @@ import 'package:fundapp/Src/Database/FB.dart';
 import 'package:fundapp/Src/Registation/Donor.dart';
 import 'package:fundapp/Src/Registation/Ngo.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
+import 'package:fundapp/Src/Widget/Dialog.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -51,29 +52,27 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
       topContainerSize = MediaQuery.of(context).size.height / 2;
     }
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SafeArea(
-        child: WillPopScope(
-          onWillPop: () async {
-            if (_name_of_registation != "") {
-              setState(() {
-                _name_of_registation = "";
+    return SafeArea(
+      child: WillPopScope(
+        onWillPop: () async {
+          if (_name_of_registation != "") {
+            setState(() {
+              _name_of_registation = "";
 
-                opacity = 0.0;
+              opacity = 0.0;
 
-                _name_of_registation = "";
+              _name_of_registation = "";
 
-                bottomContainerSize = MediaQuery.of(context).size.height / 2;
+              bottomContainerSize = MediaQuery.of(context).size.height / 2;
 
-                topContainerSize = MediaQuery.of(context).size.height / 2;
-              });
-            } else {
-              exit(0);
-            }
-          },
+              topContainerSize = MediaQuery.of(context).size.height / 2;
+            });
+          } else {
+            exit(0);
+          }
+        },
 
-          /*
+        /*
           * _isPressLogIn
               ? Positioned.fill(
                   child: Align(
@@ -85,29 +84,28 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
               : Container(),
           *
           * */
-          child: Scaffold(
-            backgroundColor: Color(0xffF7F7F7),
-            body: SingleChildScrollView(
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: new Column(
-                      children: <Widget>[_top(), _bottom()],
-                    ),
+        child: Scaffold(
+          backgroundColor: Color(0xffF7F7F7),
+          body: SingleChildScrollView(
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: new Column(
+                    children: <Widget>[_top(), _bottom()],
                   ),
-                  _isPressLogIn
-                      ? Positioned.fill(
-                          child: Align(
-                          alignment: Alignment.center,
-                          child: CircularProgressIndicator(
-                            backgroundColor: Colors.deepOrange,
-                          ),
-                        ))
-                      : Container(),
-                ],
-              ),
+                ),
+                _isPressLogIn
+                    ? Positioned.fill(
+                        child: Align(
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          backgroundColor: Colors.deepOrange,
+                        ),
+                      ))
+                    : Container(),
+              ],
             ),
           ),
         ),
@@ -282,7 +280,7 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
               addDataToSP();
 
               Navigator.of(context).pushReplacement(
-                  new MaterialPageRoute(builder: (context) => Home()));
+                  new MaterialPageRoute(builder: (context) => HomePage()));
             } else {
               fb
                   .logIn(_email_controller.value.text,
@@ -298,6 +296,8 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
                   setState(() {
                     _isPressLogIn = false;
                   });
+
+                  MyDialog.showDialog("Failed to log in..", "Error", context);
                 }
               });
             }
@@ -470,8 +470,8 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
       _isPressLogIn = false;
     });
 
-    Navigator.of(context)
-        .pushReplacement(new MaterialPageRoute(builder: (context) => Home()));
+    Navigator.of(context).pushReplacement(
+        new MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   void addDataToSP() async {

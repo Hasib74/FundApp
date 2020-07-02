@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundapp/Src/Display/Pages/Admin/CommunicatePage.dart';
 
 import 'Admin/Employ.dart';
 import 'Admin/Home.dart';
@@ -10,21 +11,22 @@ class AdminPage extends StatefulWidget {
 }
 
 class _AdminPageState extends State<AdminPage> {
-
-
-
-  var tab = "Home";
+  var tab = "Status";
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         tabs(),
-        tab == "Home"
-            ? Expanded(child: Home())
-            : tab == "Request"
-                ? Expanded(child: Request())
-                : Expanded(child: Employ()),
+        SizedBox(
+          height: 10,
+        ),
+        if (tab == "Status")
+          Expanded(child: Status())
+        else if (tab == "Request")
+          Expanded(child: Request())
+        else if (tab == "Communicate")
+          Expanded(child: CommunicatePage())
       ],
     );
   }
@@ -37,14 +39,14 @@ class _AdminPageState extends State<AdminPage> {
         InkWell(
           onTap: () {
             setState(() {
-              tab = "Home";
+              tab = "Status";
             });
           },
           child: Container(
             // width: 50,
             height: 24,
             decoration: BoxDecoration(
-                color: tab == "Home" ? Color(0xffFF5126) : Colors.white,
+                color: tab == "Status" ? Color(0xffFF5126) : Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
@@ -53,9 +55,9 @@ class _AdminPageState extends State<AdminPage> {
 
             child: Center(
                 child: Text(
-              "   Home    ",
+              "   Status    ",
               style: TextStyle(
-                  color: tab == "Home" ? Colors.white : Colors.black,
+                  color: tab == "Status" ? Colors.white : Colors.black,
                   fontWeight: FontWeight.w500),
             )),
           ),
@@ -109,27 +111,34 @@ class _AdminPageState extends State<AdminPage> {
         InkWell(
           onTap: () {
             setState(() {
-              tab = "Employ";
+              tab = "Communicate";
             });
           },
           child: Container(
             // width: 50,
             height: 24,
             decoration: BoxDecoration(
-                color: tab == "Employ" ? Color(0xffFF5126) : Colors.white,
+                color: tab == "Communicate" ? Color(0xffFF5126) : Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 boxShadow: [
                   BoxShadow(
                       color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
                 ]),
 
-            child: Center(
-                child: Text(
-              "   Employ    ",
-              style: TextStyle(
-                  color: tab == "Employ" ? Colors.white : Colors.black,
-                  fontWeight: FontWeight.w500),
-            )),
+            child: Stack(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "   Communicate    ",
+                    style: TextStyle(
+                        color:
+                            tab == "Communicate" ? Colors.white : Colors.black,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Padding(padding: EdgeInsets.only(left: 10)),

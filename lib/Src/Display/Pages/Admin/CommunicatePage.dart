@@ -3,12 +3,12 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:fundapp/Src/Database/FB.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
 
-class Request extends StatefulWidget {
+class CommunicatePage extends StatefulWidget {
   @override
-  _RequestState createState() => _RequestState();
+  _CommunicatePageState createState() => _CommunicatePageState();
 }
 
-class _RequestState extends State<Request> {
+class _CommunicatePageState extends State<CommunicatePage> {
   var tab = "Donor";
 
   FB fb = FB();
@@ -92,48 +92,6 @@ class _RequestState extends State<Request> {
     );
   }
 
-  buttonAccceptOrDecline(gmail, userType) {
-    return Row(
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            fb.accept(gmail, userType);
-          },
-          child: Container(
-            height: 30,
-            decoration: BoxDecoration(
-                color: Colors.greenAccent,
-                border: Border.all(color: Colors.grey, width: 1)),
-            child: Center(
-              child: Text(
-                "  Accepts   ",
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-        ),
-        Padding(padding: EdgeInsets.all(10)),
-        InkWell(
-          onTap: () {
-            fb.declie(gmail, userType);
-          },
-          child: Container(
-            height: 30,
-            decoration: BoxDecoration(
-                color: Colors.red,
-                border: Border.all(color: Colors.grey, width: 1)),
-            child: Center(
-              child: Text("  Dicline   ",
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold)),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
   donor() {
     return Expanded(
       child: StreamBuilder(
@@ -159,14 +117,19 @@ class _RequestState extends State<Request> {
               List _nid_or_passport = new List();
               List _referance = new List();
 
+              List _phone_number = new List();
+
               //  Map<dynamic, dynamic> donor = event.data.snapshot.value;
 
               Map<dynamic, dynamic> donor = event.data.snapshot.value;
 
               donor.forEach((key, value) {
-                if (value["approved"] == false) {
+                if (value["approved"] == true) {
                   _name_list.add(value["Name"]);
                   _email_list.add(value["Email"]);
+
+                  _phone_number.add(value["phone_number"]);
+
                   //  _phone_number_list.add(value["Phone Number"]);
                   //   _email_list.add(value["Email"]);
 
@@ -192,7 +155,7 @@ class _RequestState extends State<Request> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
+                            children: [
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,10 +196,24 @@ class _RequestState extends State<Request> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.w400),
                                   ),
+                                  Text(
+                                    _referance[index] == null
+                                        ? ""
+                                        : _phone_number[index],
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w400),
+                                  ),
                                 ],
                               ),
-                              buttonAccceptOrDecline(
-                                  _email_list[index], "donar"),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.phone,
+                                  color: Theme.of(context).accentColor,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -272,13 +249,14 @@ class _RequestState extends State<Request> {
 
               List _serialNumber = new List();
               List _referance = new List();
+              List _phone_number = new List();
 
               //  Map<dynamic, dynamic> donor = event.data.snapshot.value;
 
               Map<dynamic, dynamic> donor = event.data.snapshot.value;
 
               donor.forEach((key, value) {
-                if (value["approved"] == false) {
+                if (value["approved"] == true) {
                   _name_list.add(value["Name"]);
                   _email_list.add(value["Email"]);
                   //  _phone_number_list.add(value["Phone Number"]);
@@ -286,6 +264,8 @@ class _RequestState extends State<Request> {
                   _serialNumber.add(value["Serial Number"]);
 
                   _referance.add(value["Refferance"]);
+
+                  _phone_number.add(value["phone_number"]);
 
                   ///  _approved_list.add(value["approved"]);
                 }
@@ -306,11 +286,14 @@ class _RequestState extends State<Request> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
                                     _name_list[index] == null
@@ -348,9 +331,18 @@ class _RequestState extends State<Request> {
                                         fontSize: 15,
                                         fontWeight: FontWeight.w400),
                                   ),
+                                  Text(
+                                    _referance[index] == null
+                                        ? ""
+                                        : _phone_number[index],
+                                    style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w400),
+                                  ),
                                 ],
                               ),
-                              buttonAccceptOrDecline(_email_list[index], "ngo"),
+                              Icon(Icons.phone),
                             ],
                           ),
                         ),

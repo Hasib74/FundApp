@@ -16,7 +16,7 @@ class _DonorRegistationState extends State<DonorRegistation> {
   var _passport_or_nid_controller = new TextEditingController();
   var _mailing_address_controller = new TextEditingController();
   var _refferance_controller = new TextEditingController();
-  var _password_controller = new TextEditingController();
+  var _phone_number_controller = new TextEditingController();
 
   //var __controller = new TextEditingController();
 
@@ -142,13 +142,13 @@ class _DonorRegistationState extends State<DonorRegistation> {
               borderRadius: BorderRadius.all(Radius.circular(50)),
             ),
             child: TextField(
-              obscureText: true,
-              controller: _password_controller,
+              keyboardType: TextInputType.phone,
+              controller: _phone_number_controller,
               decoration: new InputDecoration(
                 filled: true,
 
                 //fillColor: Colors.grey[300],
-                hintText: 'Password ',
+                hintText: 'Phone Number ',
                 border: InputBorder.none,
               ),
             ),
@@ -171,7 +171,7 @@ class _DonorRegistationState extends State<DonorRegistation> {
                       _passport_or_nid_controller.value.text,
                       _mailing_address_controller.value.text,
                       _refferance_controller.value.text,
-                      _password_controller)
+                      _phone_number_controller)
                   .then((value) {
                 print("The value is ${value}");
 
@@ -232,22 +232,14 @@ class _DonorRegistationState extends State<DonorRegistation> {
         _passport_or_nid_controller.value.text.isNotEmpty &&
         _mailing_address_controller.value.text.isNotEmpty &&
         _refferance_controller.value.text.isNotEmpty &&
-        _password_controller.value.text.isNotEmpty) {
+        _phone_number_controller.value.text.isNotEmpty) {
       validation = true;
 
-      if (_password_controller.value.text.length >= 6) {
+      if (_email_controller.value.text.contains("@")) {
         validation = true;
-
-        if (_email_controller.value.text.contains("@")) {
-          validation = true;
-        } else {
-          validation = true;
-          Common.snackBar("Email is formated ", context);
-        }
       } else {
-        Common.snackBar("Password should be atlist 6 character ", context);
-
-        validation = false;
+        validation = true;
+        Common.snackBar("Email is formated ", context);
       }
     } else {
       Common.snackBar("Empty !!! ", context);
@@ -273,7 +265,7 @@ class _DonorRegistationState extends State<DonorRegistation> {
     Common.usertype = "Donor";
     Common.gmail = _email_controller.value.text;
 
-    Navigator.of(context)
-        .pushReplacement(new MaterialPageRoute(builder: (context) => Home()));
+    Navigator.of(context).pushReplacement(
+        new MaterialPageRoute(builder: (context) => HomePage()));
   }
 }

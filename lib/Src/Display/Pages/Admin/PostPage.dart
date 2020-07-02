@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:fundapp/Src/Database/FB.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:fundapp/Src/Widget/messageCardWidget.dart';
 import 'package:fundapp/Src/model/Post.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:fundapp/Src/model/message.dart';
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
+class PostPage extends StatelessWidget {
+  FB fb = new FB();
 
-class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
