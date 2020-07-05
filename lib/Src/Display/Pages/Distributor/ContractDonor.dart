@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fundapp/Src/Display/Pages/Donor/Event.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_phone_state/flutter_phone_state.dart';
+
+
 
 class ContractDonor extends StatefulWidget {
   @override
@@ -130,9 +133,15 @@ class _ContractDonorState extends State<ContractDonor> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.phone,
-                                color: Theme.of(context).accentColor,
+                              child: InkWell(
+                                onTap: () {
+                                  FlutterPhoneState.startPhoneCall(
+                                      "${_phone_number[index]}");
+                                },
+                                child: Icon(
+                                  Icons.phone,
+                                  color: Theme.of(context).accentColor,
+                                ),
                               ),
                             ),
                           ],

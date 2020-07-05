@@ -1,21 +1,18 @@
-/*
 import 'package:flutter/material.dart';
-
-import 'package:firebase_database/firebase_database.dart';
 import 'package:fundapp/Src/Database/FB.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
 
-
-class Employ extends StatefulWidget {
+class Event extends StatefulWidget {
   @override
-  _EmployState createState() => _EmployState();
+  _EventState createState() => _EventState();
 }
 
-class _EmployState extends State<Employ> {
+class _EventState extends State<Event> {
   var _name_controller = TextEditingController();
   var _location_controller = TextEditingController();
-  var _phoneNumber = TextEditingController();
-  var _email_address = TextEditingController();
+  var _description = TextEditingController();
+  var _time = TextEditingController();
 
   bool isLoading = false;
 
@@ -25,14 +22,14 @@ class _EmployState extends State<Employ> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        loadEmploy(),
+        loadEvent(),
         Positioned(
             right: 15,
             bottom: 15,
             child: FloatingActionButton(
               backgroundColor: Colors.white,
               onPressed: () {
-                addEmploy();
+                addEvent();
               },
               child: Icon(
                 Icons.add,
@@ -45,7 +42,7 @@ class _EmployState extends State<Employ> {
     ;
   }
 
-  void addEmploy() {
+  void addEvent() {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -54,7 +51,7 @@ class _EmployState extends State<Employ> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0))),
             backgroundColor: Colors.white,
-            title: Text("Add Employ"),
+            title: Text("Add Event"),
             content: SingleChildScrollView(
               child: Container(
                 child: Column(
@@ -120,12 +117,12 @@ class _EmployState extends State<Employ> {
               borderRadius: BorderRadius.all(Radius.circular(4)),
             ),
             child: TextField(
-              controller: _phoneNumber,
+              controller: _description,
               keyboardType: TextInputType.number,
               decoration: new InputDecoration(
                 filled: true,
                 //fillColor: Colors.grey[300],
-                hintText: 'Phone Number',
+                hintText: 'Description',
                 border: InputBorder.none,
               ),
             ),
@@ -139,11 +136,11 @@ class _EmployState extends State<Employ> {
               borderRadius: BorderRadius.all(Radius.circular(4)),
             ),
             child: TextField(
-              controller: _email_address,
+              controller: _time,
               decoration: new InputDecoration(
                 filled: true,
                 //fillColor: Colors.grey[300],
-                hintText: 'Email',
+                hintText: 'Time',
                 border: InputBorder.none,
               ),
             ),
@@ -153,16 +150,16 @@ class _EmployState extends State<Employ> {
     );
   }
 
-  loadEmploy() {
+  loadEvent() {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: StreamBuilder(
         stream: FirebaseDatabase.instance
             .reference()
-            .child(Common.employ)
-            .child(Common.gmail.replaceAll(".", ""))
+            .child(Common.event)
+            //.child(Common.gmail.replaceAll(".", ""))
             .onValue,
-        builder: (BuildContext context, AsyncSnapshot<Event> event) {
+        builder: (BuildContext context, event) {
           //  print(snapshot.data.values);
 
           if (event.hasError ||
@@ -172,18 +169,18 @@ class _EmployState extends State<Employ> {
           } else {
             List _name_list = new List();
             List _location_list = new List();
-            List _phone_number_list = new List();
-            List _email_list = new List();
-            List _approved_list = new List();
+            List _description_list = new List();
+            List _time_list = new List();
+            // List _approved_list = new List();
 
             Map<dynamic, dynamic> branch = event.data.snapshot.value;
             branch.forEach((key, value) {
               _name_list.add(value["Name"]);
               _location_list.add(value["Location"]);
-              _phone_number_list.add(value["Phone Number"]);
-              _email_list.add(value["Email"]);
+              _description_list.add(value["Description"]);
+              _time_list.add(value["Time"]);
 
-              _approved_list.add(value["approved"]);
+              // _approved_list.add(value["approved"]);
             });
 
             return ListView.builder(
@@ -206,22 +203,36 @@ class _EmployState extends State<Employ> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  _name_list[index],
+                                  "${_name_list[index]}",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  _location_list[index],
+                                  "Location :${_location_list[index]}",
                                   style: TextStyle(
-                                      color: Colors.black54,
+                                      color: Colors.black87,
                                       fontSize: 15,
-                                      fontWeight: FontWeight.w400),
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  "Time :${_time_list[index]}",
+                                  style: TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  "${_description_list[index]}",
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontSize: 15,
+                                  ),
                                 ),
                               ],
                             ),
-                            _approved_list[index] == null
+                            /* _approved_list[index] == null
                                 ? Icon(
                                     Icons.check_circle_outline,
                                     color: Colors.black54,
@@ -229,7 +240,7 @@ class _EmployState extends State<Employ> {
                                 : Icon(
                                     Icons.check_circle,
                                     color: Colors.greenAccent,
-                                  ),
+                                  ),*/
                           ],
                         ),
                       ),
@@ -258,23 +269,21 @@ class _EmployState extends State<Employ> {
           onPressed: () {
             if (_name_controller.value.text.isNotEmpty &&
                 _location_controller.value.text.isNotEmpty &&
-                _phoneNumber.value.text.isNotEmpty &&
-                _email_address.value.text.isNotEmpty) {
+                _description.value.text.isNotEmpty &&
+                _time.value.text.isNotEmpty) {
               setState(() {
                 isLoading = true;
               });
 
-              */
-/*
+              /*
               * name,location,phone,email
-              * *//*
-
+              * */
               fb
-                  .saveEmploy(
+                  .saveEvent(
                       _name_controller.value.text,
                       _location_controller.value.text,
-                      _phoneNumber.value.text,
-                      _email_address.value.text)
+                      _description.value.text,
+                      _time.value.text)
                   .then((value) {
                 if (value) {
                   setState(() {
@@ -283,8 +292,8 @@ class _EmployState extends State<Employ> {
 
                   _name_controller.text = "";
                   _location_controller.text = "";
-                  _phoneNumber.text = "";
-                  _email_address.text = "";
+                  _description.text = "";
+                  _time.text = "";
 
                   Navigator.of(context).pop();
                 } else {
@@ -319,4 +328,3 @@ class _EmployState extends State<Employ> {
         : Container();
   }
 }
-*/

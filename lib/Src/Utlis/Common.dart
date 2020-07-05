@@ -8,7 +8,8 @@ class Common {
   static var usertype = "";
   static var gmail = "";
   static var branch = "Branch";
-  static var employ = "Employ";
+  //static var employ = "Employ";
+  static var event = "Event";
   static var distributor = "Distributor";
   static var admin = "Admin";
   static var message = "Message";

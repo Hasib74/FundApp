@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fundapp/Src/Database/FB.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
+import 'package:flutter_phone_state/flutter_phone_state.dart';
 
 class CommunicatePage extends StatefulWidget {
   @override
@@ -209,9 +210,15 @@ class _CommunicatePageState extends State<CommunicatePage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.phone,
-                                  color: Theme.of(context).accentColor,
+                                child: InkWell(
+                                  onTap: () {
+                                    FlutterPhoneState.startPhoneCall(
+                                        "${_phone_number[index]}");
+                                  },
+                                  child: Icon(
+                                    Icons.phone,
+                                    color: Theme.of(context).accentColor,
+                                  ),
                                 ),
                               ),
                             ],
@@ -286,14 +293,12 @@ class _CommunicatePageState extends State<CommunicatePage> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
                                     _name_list[index] == null
@@ -342,7 +347,19 @@ class _CommunicatePageState extends State<CommunicatePage> {
                                   ),
                                 ],
                               ),
-                              Icon(Icons.phone),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    FlutterPhoneState.startPhoneCall(
+                                        "${_phone_number[index]}");
+                                  },
+                                  child: Icon(
+                                    Icons.phone,
+                                    color: Theme.of(context).accentColor,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ),

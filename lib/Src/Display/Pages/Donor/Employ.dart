@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fundapp/Src/Database/FB.dart';
@@ -267,9 +268,11 @@ class _EmployState extends State<Employ> {
                 isLoading = true;
               });
 
-              /*
+              */
+/*
               * name,location,phone,email
-              * */
+              * *//*
+
               fb
                   .saveEmployByDonor(
                       _name_controller.value.text,
@@ -320,3 +323,4 @@ class _EmployState extends State<Employ> {
         : Container();
   }
 }
+*/

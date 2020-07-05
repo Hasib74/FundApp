@@ -202,19 +202,19 @@ class FB {
                 _phoneNumber.value.text.isNotEmpty && _email_address.value.text.isNotEmpty)
   * */
 
-  Future<bool> saveEmploy(name, location, phone, email) async {
+  Future<bool> saveEvent(name, location, description, time) async {
     bool isSaved;
 
     await FirebaseDatabase.instance
         .reference()
-        .child(Common.employ)
-        .child(Common.gmail.replaceAll(".", ""))
+        .child(Common.event)
+       /// .child(Common.gmail.replaceAll(".", ""))
         .child(new DateTime.now().toIso8601String().replaceAll(".", ""))
         .set({
       "Name": name,
       "Location": location,
-      "Phone Number": phone,
-      "Email": email
+      "Description": description,
+      "Time": time
     }).then((value) {
       isSaved = true;
     }).catchError((err) {
@@ -223,6 +223,8 @@ class FB {
 
     return isSaved;
   }
+
+/*
 
   Future<bool> saveEmployByDonor(name, location, phone, email) async {
     bool isSaved;
@@ -245,6 +247,7 @@ class FB {
 
     return isSaved;
   }
+*/
 
   Future<bool> accept(gmail, userType) {
     if (userType == "donar") {
