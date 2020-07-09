@@ -4,8 +4,6 @@ import 'package:fundapp/Src/Utlis/Common.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_phone_state/flutter_phone_state.dart';
 
-
-
 class ContractDonor extends StatefulWidget {
   @override
   _ContractDonorState createState() => _ContractDonorState();
