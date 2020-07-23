@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundapp/Src/Display/Pages/Admin/Volunteer.dart';
 import 'package:fundapp/Src/Display/Pages/Distributor/Branch.dart';
 import 'package:fundapp/Src/Display/Pages/Distributor/ContractDonor.dart';
 import 'package:fundapp/Src/Display/Pages/Distributor/Event.dart';
@@ -23,106 +24,140 @@ class _NgoPageState extends State<NgoPage> {
             ? Expanded(child: ContractDonor())
             : tab == "Event"
                 ? Expanded(child: new Event())
-                : Expanded(child: new SSlPage())
+                : tab =="Volunteer"? Expanded(child: Volunteer()) : Expanded(child: new SSlPage())
       ],
     );
   }
 
   tabs() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      //crossAxisAlignment: CrossAxisAlignment.end,
-      children: <Widget>[
-        InkWell(
-          onTap: () {
-            setState(() {
-              tab = "Contract Donor";
-            });
-          },
-          child: Container(
-            // width: 50,
-            height: 24,
-            decoration: BoxDecoration(
-                color:
-                    tab == "Contract Donor" ? Color(0xffFF5126) : Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
-                ]),
+    return Container(
+      height: 35,
+      child: ListView(
+  shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
 
-            child: Center(
-                child: Text(
-              " Contract Donor ",
-              style: TextStyle(
-                  color: tab == "Contract Donor" ? Colors.white : Colors.black,
-                  fontWeight: FontWeight.w500),
-            )),
-          ),
-        ),
-        Padding(padding: EdgeInsets.only(left: 10)),
-        InkWell(
-          onTap: () {
-            setState(() {
-              tab = "Event";
-            });
-          },
-          child: Container(
-            // width: 50,
-            height: 24,
-            decoration: BoxDecoration(
-                color: tab == "Event" ? Color(0xffFF5126) : Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
-                ]),
+        //crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          InkWell(
+            onTap: () {
+              setState(() {
+                tab = "Contract Donor";
+              });
+            },
+            child: Container(
+              // width: 50,
+              height: 24,
+              decoration: BoxDecoration(
+                  color:
+                      tab == "Contract Donor" ? Color(0xffFF5126) : Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
+                  ]),
 
-            child: Stack(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.center,
+              child: Center(
                   child: Text(
-                    "   Event    ",
-                    style: TextStyle(
-                        color: tab == "Event" ? Colors.white : Colors.black,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ],
+                " Contract Donor ",
+                style: TextStyle(
+                    color: tab == "Contract Donor" ? Colors.white : Colors.black,
+                    fontWeight: FontWeight.w500),
+              )),
             ),
           ),
-        ),
-        Padding(padding: EdgeInsets.only(left: 10)),
-        InkWell(
-          onTap: () {
-            setState(() {
-              tab = "Transfer Money";
-            });
-          },
-          child: Container(
-            // width: 50,
-            height: 24,
-            decoration: BoxDecoration(
-                color:
-                    tab == "Transfer Money" ? Color(0xffFF5126) : Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
-                ]),
+          Padding(padding: EdgeInsets.only(left: 10)),
+          InkWell(
+            onTap: () {
+              setState(() {
+                tab = "Event";
+              });
+            },
+            child: Container(
+              // width: 50,
+              height: 24,
+              decoration: BoxDecoration(
+                  color: tab == "Event" ? Color(0xffFF5126) : Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
+                  ]),
 
-            child: Center(
-                child: Text(
-              "   Transfer Money    ",
-              style: TextStyle(
-                  color: tab == "Transfer Money" ? Colors.white : Colors.black,
-                  fontWeight: FontWeight.w500),
-            )),
+              child: Stack(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "   Event    ",
+                      style: TextStyle(
+                          color: tab == "Event" ? Colors.white : Colors.black,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-        Padding(padding: EdgeInsets.only(left: 10)),
-      ],
+          Padding(padding: EdgeInsets.only(left: 10)),
+          InkWell(
+            onTap: () {
+              setState(() {
+                tab = "Transfer Money";
+              });
+            },
+            child: Container(
+              // width: 50,
+              height: 24,
+              decoration: BoxDecoration(
+                  color:
+                      tab == "Transfer Money" ? Color(0xffFF5126) : Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
+                  ]),
+
+              child: Center(
+                  child: Text(
+                "   Transfer Money    ",
+                style: TextStyle(
+                    color: tab == "Transfer Money" ? Colors.white : Colors.black,
+                    fontWeight: FontWeight.w500),
+              )),
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(left: 10)),
+
+          InkWell(
+            onTap: () {
+              setState(() {
+                tab = "Volunteer";
+              });
+            },
+            child: Container(
+              // width: 50,
+              height: 24,
+              decoration: BoxDecoration(
+                  color:
+                  tab == "Volunteer" ? Color(0xffFF5126) : Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
+                  ]),
+
+              child: Center(
+                  child: Text(
+                    "   Volunteer    ",
+                    style: TextStyle(
+                        color: tab == "Volunteer" ? Colors.white : Colors.black,
+                        fontWeight: FontWeight.w500),
+                  )),
+            ),
+          ),
+          Padding(padding: EdgeInsets.only(left: 10)),
+        ],
+      ),
     );
   }
 }

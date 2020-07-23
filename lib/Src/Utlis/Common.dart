@@ -10,6 +10,7 @@ class Common {
   static var branch = "Branch";
   //static var employ = "Employ";
   static var event = "Event";
+  static var volinteer = "Volinteer";
   static var distributor = "Distributor";
   static var admin = "Admin";
   static var message = "Message";

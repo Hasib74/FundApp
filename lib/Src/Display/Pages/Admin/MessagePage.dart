@@ -16,13 +16,6 @@ class MessagePage extends StatelessWidget {
       stream:
           FirebaseDatabase.instance.reference().child(Common.message).onValue,
       builder: (context, AsyncSnapshot snapshot) {
-        ///debugPrint("${snapshot.data.snapshot.value}");
-
-        //TotalMessage total_message = new TotalMessage();
-
-        /*print(
-                    "The message is  ${total_message.total_message_list[0].data[0].message}");*/
-
         if (snapshot.hasData &&
             snapshot.hasError == false &&
             snapshot.data != null) {

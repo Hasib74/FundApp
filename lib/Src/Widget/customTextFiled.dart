@@ -22,7 +22,7 @@ class CustomTextFiled extends StatelessWidget {
             controller: post_controller,
             maxLines: 5,
             maxLength: 500,
-            style: TextStyle(color: Theme.of(context).accentColor),
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: "Write your post..",

@@ -205,49 +205,52 @@ class FB {
   Future<bool> saveEvent(name, location, description, time) async {
     bool isSaved;
 
+    print("SSSSSSSSS  ${time}");
     await FirebaseDatabase.instance
         .reference()
         .child(Common.event)
-       /// .child(Common.gmail.replaceAll(".", ""))
+
+        /// .child(Common.gmail.replaceAll(".", ""))
         .child(new DateTime.now().toIso8601String().replaceAll(".", ""))
         .set({
       "Name": name,
       "Location": location,
       "Description": description,
-      "Time": time
+      "Time": time.toString()
     }).then((value) {
       isSaved = true;
     }).catchError((err) {
+      print("Error  ${err}");
+
       isSaved = false;
     });
 
     return isSaved;
   }
 
-/*
-
-  Future<bool> saveEmployByDonor(name, location, phone, email) async {
+  Future<bool> saveVolunteer(name, email, number) async {
     bool isSaved;
 
     await FirebaseDatabase.instance
         .reference()
-        .child(Common.employ)
-        .child(Common.gmail.replaceAll(".", ""))
+        .child(Common.volinteer)
+
+        /// .child(Common.gmail.replaceAll(".", ""))
         .child(new DateTime.now().toIso8601String().replaceAll(".", ""))
         .set({
       "Name": name,
-      "Location": location,
-      "Phone Number": phone,
-      "Email": email
+      "Email": email,
+      "Number": number,
     }).then((value) {
       isSaved = true;
     }).catchError((err) {
+      print("Error  ${err}");
+
       isSaved = false;
     });
 
     return isSaved;
   }
-*/
 
   Future<bool> accept(gmail, userType) {
     if (userType == "donar") {

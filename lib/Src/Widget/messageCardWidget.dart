@@ -59,9 +59,15 @@ class MessageWidget extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            Text(
-              "                   ${data.messages.messge}",
-              style: Theme.of(context).textTheme.subtitle2,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "${data.messages.messge}",
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 15,
+                ),
+              ),
             )
           ],
         ),

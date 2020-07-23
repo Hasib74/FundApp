@@ -51,7 +51,7 @@ class _BranchState extends State<Branch> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0))),
             backgroundColor: Colors.white,
-            title: Text("Add Branch"),
+            title: Text("Add Distributor"),
             content: Container(
               child: Column(
                 mainAxisSize: MainAxisSize.min,

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter/material.dart';
 import 'package:fundapp/Src/Database/FB.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fundapp/Src/Display/Pages/DateAndTime.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
 
-class Event extends StatefulWidget {
+class Volunteer extends StatefulWidget {
   @override
-  _EventState createState() => _EventState();
+  _VolunteerState createState() => _VolunteerState();
 }
 
-class _EventState extends State<Event> {
+class _VolunteerState extends State<Volunteer> {
   var _name_controller = TextEditingController();
-  var _location_controller = TextEditingController();
-  var _description = TextEditingController();
+  var _email_controller = TextEditingController();
+  var _number_controller = TextEditingController();
 
   // var _time = TextEditingController();
 
@@ -26,14 +28,14 @@ class _EventState extends State<Event> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        loadEvent(),
+        loadVolunteer(),
         Positioned(
             right: 15,
             bottom: 15,
             child: FloatingActionButton(
               backgroundColor: Colors.white,
               onPressed: () {
-                addEvent();
+                addVolunteer();
               },
               child: Icon(
                 Icons.add,
@@ -46,7 +48,7 @@ class _EventState extends State<Event> {
     ;
   }
 
-  void addEvent() {
+  void addVolunteer() {
     showDialog(
         context: context,
         barrierDismissible: false,
@@ -55,7 +57,7 @@ class _EventState extends State<Event> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(5.0))),
             backgroundColor: Colors.white,
-            title: Text("Add Event"),
+            title: Text("Add Volunteer"),
             content: SingleChildScrollView(
               child: Container(
                 child: Column(
@@ -103,40 +105,30 @@ class _EventState extends State<Event> {
               borderRadius: BorderRadius.all(Radius.circular(4)),
             ),
             child: TextField(
-              controller: _location_controller,
+              controller: _email_controller,
               decoration: new InputDecoration(
                 filled: true,
                 //fillColor: Colors.grey[300],
-                hintText: 'Location',
+                hintText: 'Email',
                 border: InputBorder.none,
               ),
             ),
           ),
         ),
-        BasicDateTimeField(
-          dateAndTimeOutput: (data_and_time) {
-            print("Date and time  ${data_and_time}");
-            setState(() {
-              selectedDate = data_and_time;
-            });
-          },
-        ),
         Padding(
-          padding: const EdgeInsets.only(top: 8, bottom: 8),
+          padding: const EdgeInsets.only(top: 8),
           child: Container(
-            height: 130,
             decoration: BoxDecoration(
               color: Color(0xffF7F7F7),
               borderRadius: BorderRadius.all(Radius.circular(4)),
             ),
             child: TextField(
-              maxLength: 800,
-              maxLines: 100,
-              controller: _description,
+              keyboardType: TextInputType.number,
+              controller: _number_controller,
               decoration: new InputDecoration(
                 filled: true,
                 //fillColor: Colors.grey[300],
-                hintText: 'Description',
+                hintText: 'Number',
                 border: InputBorder.none,
               ),
             ),
@@ -146,13 +138,13 @@ class _EventState extends State<Event> {
     );
   }
 
-  loadEvent() {
+  loadVolunteer() {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: StreamBuilder(
         stream: FirebaseDatabase.instance
             .reference()
-            .child(Common.event)
+            .child(Common.volinteer)
             //.child(Common.gmail.replaceAll(".", ""))
             .onValue,
         builder: (BuildContext context, event) {
@@ -164,17 +156,15 @@ class _EventState extends State<Event> {
             return Container();
           } else {
             List _name_list = new List();
-            List _location_list = new List();
-            List _description_list = new List();
-            List _time_list = new List();
+            List _email_list = new List();
+            List _number_list = new List();
             // List _approved_list = new List();
 
             Map<dynamic, dynamic> branch = event.data.snapshot.value;
             branch.forEach((key, value) {
               _name_list.add(value["Name"]);
-              _location_list.add(value["Location"]);
-              _description_list.add(value["Description"]);
-              _time_list.add(value["Time"]);
+              _email_list.add(value["Email"]);
+              _number_list.add(value["Number"]);
 
               // _approved_list.add(value["approved"]);
             });
@@ -196,21 +186,21 @@ class _EventState extends State<Event> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              "${_name_list[index]}",
+                              "Name : ${_name_list[index]}",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "Location :${_location_list[index]}",
+                              "Email  : ${_email_list[index]}",
                               style: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 15,
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              "Time :${_time_list[index]}",
+                              "Number :${_number_list[index]}",
                               style: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 15,
@@ -218,20 +208,6 @@ class _EventState extends State<Event> {
                             ),
                             SizedBox(
                               height: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Wrap(
-                                children: <Widget>[
-                                  Text(
-                                    "${_description_list[index]}",
-                                    style: TextStyle(
-                                      color: Colors.black54,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ),
                           ],
                         ),
@@ -262,19 +238,18 @@ class _EventState extends State<Event> {
             print("Seleted Date  ${selectedDate}");
 
             if (_name_controller.value.text.isNotEmpty &&
-                _location_controller.value.text.isNotEmpty &&
-                _description.value.text.isNotEmpty &&
-                selectedDate != null) {
+                _number_controller.value.text.isNotEmpty &&
+                _email_controller.value.text.isNotEmpty) {
               setState(() {
                 isLoading = true;
               });
 
               fb
-                  .saveEvent(
-                      _name_controller.value.text,
-                      _location_controller.value.text,
-                      _description.value.text,
-                      selectedDate)
+                  .saveVolunteer(
+                _name_controller.value.text,
+                _email_controller.value.text,
+                _number_controller.value.text,
+              )
                   .then((value) {
                 if (value) {
                   setState(() {
@@ -282,8 +257,8 @@ class _EventState extends State<Event> {
                   });
 
                   _name_controller.text = "";
-                  _location_controller.text = "";
-                  _description.text = "";
+                  _email_controller.text = "";
+                  _number_controller.text = "";
 
                   Navigator.of(context).pop();
                 } else {

@@ -12,7 +12,6 @@ class Event extends StatefulWidget {
 class _EventState extends State<Event> {
   @override
   Widget build(BuildContext context) {
-
     print("Eventsssssssssssssssssssssssss");
 
     return loadEvent();
@@ -25,7 +24,7 @@ class _EventState extends State<Event> {
         stream: FirebaseDatabase.instance
             .reference()
             .child(Common.event)
-          //  .child(Common.gmail.replaceAll(".", ""))
+            //  .child(Common.gmail.replaceAll(".", ""))
             .onValue,
         builder: (BuildContext context, event) {
           //  print(event.data.snapshot.value);
@@ -71,7 +70,7 @@ class _EventState extends State<Event> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                 "${ _name_list[index]}",
+                                  "${_name_list[index]}",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
