@@ -254,11 +254,11 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 3)),
-              new Text(
+              /* new Text(
                 "Forgot your password?",
                 style: TextStyle(color: Color(0xff5C5C5C)),
                 textAlign: TextAlign.right,
-              )
+              )*/
             ],
           ),
         ),
@@ -272,6 +272,8 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
               _isPressLogIn = true;
             });
 
+            print("Tab");
+
             if (_email_controller.value.text == "admin@gmail.com" &&
                 _password_controller.value.text == "123456") {
               Common.gmail = _email_controller.value.text;
@@ -282,32 +284,39 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
               Navigator.of(context).pushReplacement(
                   new MaterialPageRoute(builder: (context) => HomePage()));
             } else {
-              fb
-                  .logIn(_email_controller.value.text,
-                      _password_controller.value.text)
-                  .then((value) {
-                print("Valueeeeeee ${value}");
+              print("Email  ${_email_controller.value.text}");
+              print("Password   ${_password_controller.value.text}");
 
-                if (value != null) {
-                  List userInfo = value.split(",");
+              if (_email_controller.value.text.isNotEmpty &&
+                  _password_controller.value.text.isNotEmpty) {
+                fb
+                    .logIn(_email_controller.value.text,
+                        _password_controller.value.text)
+                    .then((value) {
+                  print("Valueeeeeee test ${value}");
 
-                  storeToSpAndNavigateToHomeActivity(userInfo[0], userInfo[1]);
-                } else {
-                  setState(() {
-                    _isPressLogIn = false;
-                  });
+                  if (value != null) {
+                    List userInfo = value.split(",");
 
-                  MyDialog.showDialog("Failed to log in..", "Error", context);
-                }
-              });
+                    storeToSpAndNavigateToHomeActivity(
+                        userInfo[0], userInfo[1]);
+                  } else {
+                    setState(() {
+                      _isPressLogIn = false;
+                    });
+
+                    MyDialog.showDialog("Failed to log in..", "Error", context);
+                  }
+                });
+              } else {
+                setState(() {
+                  _isPressLogIn = false;
+                });
+
+                Common.ShowDialog("Empty Filed",
+                    "Please enter your gmail and password", context);
+              }
             }
-
-            /*  setState(() {
-              _isPressLogIn = true;
-
-
-
-            });*/
           },
           child: Container(
             margin: EdgeInsets.only(left: 8, right: 8),

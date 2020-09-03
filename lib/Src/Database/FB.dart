@@ -19,7 +19,7 @@ class FB {
   }
 
   Future<String> registationForDonor(name, email, passportOrNid, mailingAddress,
-      reffernce, TextEditingController phone_number_controller) async {
+      reffernce, phone_number, password) async {
     var status;
 
     await FirebaseDatabase.instance
@@ -43,8 +43,9 @@ class FB {
           "Passport Or Nid": passportOrNid,
           "Mailing Address": mailingAddress,
           "Refferance": reffernce,
-          "phone_number": phone_number_controller.value.text,
-          "approved": false
+          "phone_number": phone_number,
+          "approved": false,
+          "password": password
         }).then((value) {
           status = "Success";
 
@@ -65,7 +66,7 @@ class FB {
   ///Registrations For NGO
 
   Future<String> registationForNgo(name, email, govtDoccuments, serialNumber,
-      reffernce, phone_number) async {
+      reffernce, phone_number, String password) async {
     var status;
 
     await FirebaseDatabase.instance
@@ -90,7 +91,8 @@ class FB {
           "Serial Number": serialNumber,
           "Refferance": reffernce,
           "phone_number": phone_number,
-          "approved": false
+          "approved": false,
+          "password": password
         }).then((value) {
           status = "Success";
 
@@ -120,7 +122,10 @@ class FB {
         .child(email.toString().replaceAll(".", ""))
         .once()
         .then((value) async {
-      if (value.value != null) {
+      //print("Password ${value.value["password"]}");
+
+      if (value.value != null &&
+          value.value["password"].toString().endsWith(password)) {
         print("Valueeeeee ${value.value}");
 
         info = "Donor,${email}";
@@ -132,7 +137,8 @@ class FB {
             .child(email.toString().replaceAll(".", ""))
             .once()
             .then((value) {
-          if (value.value != null) {
+          if (value.value != null &&
+              value.value["password"].toString().endsWith(password)) {
             print("Valueeeeee  2  ${value.value}");
 
             info = "NGO,${email}";

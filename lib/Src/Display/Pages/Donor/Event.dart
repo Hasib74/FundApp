@@ -62,52 +62,33 @@ class _EventState extends State<Event> {
                           border: Border.all(color: Colors.black12)),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "${_name_list[index]}",
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  "Location :${_location_list[index]}",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  "Time :${_time_list[index]}",
-                                  style: TextStyle(
-                                      color: Colors.black87,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  "${_description_list[index]}",
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              "${_name_list[index]}",
+                              style: Theme.of(context).textTheme.headline6,
                             ),
-                            /* _approved_list[index] == null
-                                ? Icon(
-                                    Icons.check_circle_outline,
-                                    color: Colors.black54,
-                                  )
-                                : Icon(
-                                    Icons.check_circle,
-                                    color: Colors.greenAccent,
-                                  ),*/
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Location :${_location_list[index]}",
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Time :${_time_list[index]}",
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text("${_description_list[index]}",
+                                style: Theme.of(context).textTheme.bodyText2),
                           ],
                         ),
                       ),

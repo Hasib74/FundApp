@@ -5,10 +5,13 @@
 }*/
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fundapp/Src/FlutterDataProvider/fingurPrint.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
 
 import 'Src/Display/Home.dart';
 import 'Src/Home.dart';
+
+FingurPrint fingurPrint = new FingurPrint();
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,15 +51,13 @@ class _InitialPageState extends State<InitialPage> {
             dividerColor: Colors.black54,
             accentColor: Colors.deepOrange,
             highlightColor: Colors.white,
-            textTheme:
-                TextTheme(headline1: TextStyle(color: Colors.deepOrange),
-                subtitle1: TextStyle(color: Colors.black87,fontSize: 16),
-                subtitle2: TextStyle(color: Colors.black54,fontSize: 14),
+            textTheme: TextTheme(
+              headline1: TextStyle(color: Colors.deepOrange),
+              subtitle1: TextStyle(color: Colors.black87, fontSize: 16),
+              subtitle2: TextStyle(color: Colors.black54, fontSize: 14),
 
-
-               // body1: TextStyle(color: Colors.black54,fontSize: 14)
-
-                )),
+              // body1: TextStyle(color: Colors.black54,fontSize: 14)
+            )),
         home: currentUser ?? Container());
   }
 
