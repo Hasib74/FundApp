@@ -19,11 +19,23 @@ class MessagePage extends StatelessWidget {
         if (snapshot.hasData &&
             snapshot.hasError == false &&
             snapshot.data != null) {
-          Message message;
 
-          message = Message(snapshot.data.snapshot.value);
 
-          if (snapshot.data != null) {
+          if (snapshot == null) {
+            return Container();
+
+          } else {
+
+            Message message;
+
+
+            try{
+
+              message = Message(snapshot.data.snapshot.value);
+
+            }catch(err){
+
+            }
             return ListView.builder(
                 shrinkWrap: true,
                 itemCount: message.data_list.length,
@@ -32,13 +44,9 @@ class MessagePage extends StatelessWidget {
                     data: message.data_list[index],
                   );
                 });
-          } else {
-            return Container();
           }
         } else {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+            return Container();;
         }
       },
     );

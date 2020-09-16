@@ -285,9 +285,7 @@ class _VolunteerState extends State<Volunteer> {
         ? Positioned.fill(
             child: Align(
               alignment: Alignment.center,
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.deepOrange,
-              ),
+              child:  Text("")
             ),
           )
         : Container();

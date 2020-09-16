@@ -38,7 +38,7 @@ class PostPage extends StatelessWidget {
               });
         } else {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Text("Empty"),
           );
         }
       },

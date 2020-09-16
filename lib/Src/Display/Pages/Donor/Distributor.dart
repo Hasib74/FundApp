@@ -157,9 +157,7 @@ class _DistributorState extends State<Distributor> {
         ? Positioned.fill(
             child: Align(
               alignment: Alignment.center,
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.deepOrange,
-              ),
+              child:  Text("")
             ),
           )
         : Container();

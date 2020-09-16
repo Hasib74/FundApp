@@ -5,24 +5,27 @@ class Message {
 
   Message(Map<dynamic, dynamic> map) {
     print("Initial  ${map}");
-    Map<dynamic, dynamic> list = map;
 
-    list.forEach((gmail, value) {
-      List<Messages> messages_list = new List();
+    if (map != null) {
+      Map<dynamic, dynamic> list = map;
 
-      Map<dynamic, dynamic> data = value;
+      list.forEach((gmail, value) {
+        List<Messages> messages_list = new List();
 
-      data.forEach((key, value) {
-        /*messages_list.add(Messages(
+        Map<dynamic, dynamic> data = value;
+
+        data.forEach((key, value) {
+          /*messages_list.add(Messages(
             dateAndTime: value["date and time"], messge: value["message"]));*/
 
-        data_list.add(new Data(
-            gmail,
-            Messages(
-                messge: value["message"],
-                dateAndTime: value["date and time"])));
+          data_list.add(new Data(
+              gmail,
+              Messages(
+                  messge: value["message"],
+                  dateAndTime: value["date and time"])));
+        });
       });
-    });
+    }
   }
 }
 

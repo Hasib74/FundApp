@@ -100,9 +100,7 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
                     ? Positioned.fill(
                         child: Align(
                         alignment: Alignment.center,
-                        child: CircularProgressIndicator(
-                          backgroundColor: Colors.deepOrange,
-                        ),
+                        child: Text("")
                       ))
                     : Container(),
               ],

@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
               });
         } else {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Text("Empty"),
           );
         }
       },
