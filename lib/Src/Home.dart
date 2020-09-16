@@ -244,9 +244,11 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
                   borderRadius: BorderRadius.all(Radius.circular(50)),
                 ),
                 child: TextField(
+                  obscureText: true,
                   controller: _password_controller,
                   decoration: new InputDecoration(
                     filled: true,
+
                     //fillColor: Colors.grey[300],
                     hintText: 'Password',
                     border: InputBorder.none,

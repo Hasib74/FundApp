@@ -1,58 +1,21 @@
 {
   "project_info": {
-    "project_number": "678366799759",
-    "firebase_url": "https://fundmangment.firebaseio.com",
-    "project_id": "fundmangment",
-    "storage_bucket": "fundmangment.appspot.com"
+    "project_number": "510751842702",
+    "firebase_url": "https://myapp-cb039.firebaseio.com",
+    "project_id": "myapp-cb039",
+    "storage_bucket": "myapp-cb039.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:678366799759:android:cc2b98445beb642c830dfa",
-        "android_client_info": {
-          "package_name": "com.monu.fund_managment"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "678366799759-q1c0mfeuul5k7gvbb47enrc928ufujch.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.monu.fund_managment",
-            "certificate_hash": "4ec92a5b05b7528bbb3bdbb0d1193e659d035baa"
-          }
-        },
-        {
-          "client_id": "678366799759-vs7ado15rlrjsf6rvafaikh4b3uahaig.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBJ-W4rb51xOgqD22Zt5U1b92nh73dSFdQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "678366799759-vs7ado15rlrjsf6rvafaikh4b3uahaig.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:678366799759:android:aeb8079d5bb4131d830dfa",
+        "mobilesdk_app_id": "1:510751842702:android:2f0a687574a14b02fa04df",
         "android_client_info": {
           "package_name": "com.monu.fundapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "678366799759-ts6klmd5ss93f36r54daugb0aamb90cu.apps.googleusercontent.com",
+          "client_id": "510751842702-b3mv9234l4vavakiuamh8913t7ruv0up.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.monu.fundapp",
@@ -60,20 +23,28 @@
           }
         },
         {
-          "client_id": "678366799759-vs7ado15rlrjsf6rvafaikh4b3uahaig.apps.googleusercontent.com",
+          "client_id": "510751842702-tmcvjlas32d6ddosr8nr83qtvn5kmqfm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.monu.fundapp",
+            "certificate_hash": "54d2526d4037b05284d227375795ff8b267a43c2"
+          }
+        },
+        {
+          "client_id": "510751842702-bdekqbj4cfoqu07fv3sgcnil17si5ecs.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBJ-W4rb51xOgqD22Zt5U1b92nh73dSFdQ"
+          "current_key": "AIzaSyD5FT9BclEiWsbeP8pdDT0rTZ722PpE3p8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "678366799759-vs7ado15rlrjsf6rvafaikh4b3uahaig.apps.googleusercontent.com",
+              "client_id": "510751842702-bdekqbj4cfoqu07fv3sgcnil17si5ecs.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

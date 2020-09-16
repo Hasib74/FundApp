@@ -11,7 +11,6 @@ import 'package:fundapp/Src/Utlis/Common.dart';
 import 'Src/Display/Home.dart';
 import 'Src/Home.dart';
 
-FingurPrint fingurPrint = new FingurPrint();
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

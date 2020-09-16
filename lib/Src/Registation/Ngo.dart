@@ -31,7 +31,7 @@ class _NgoRegistationState extends State<NgoRegistation> {
 
   @override
   Widget build(BuildContext context) {
-    fingurPrint.actionFingur();
+    /* fingurPrint.actionFingur();*/
     return Stack(
       children: <Widget>[
         textFiledsAndButton(),
@@ -41,7 +41,7 @@ class _NgoRegistationState extends State<NgoRegistation> {
   }
 
   validation() {
-    bool validation;
+    bool validation = true;
 
     if (_password_controller.value.text.isNotEmpty &&
         _confirm_password_controller.value.text.isNotEmpty &&
