@@ -15,20 +15,11 @@ class _HomeState extends State<Home> {
     return StreamBuilder(
       stream: FirebaseDatabase.instance.reference().child(Common.post).onValue,
       builder: (context, AsyncSnapshot snapshot) {
-        // debugPrint(" The post data is  ${snapshot.data.snapshot.value}");
-
-        //TotalMessage total_message = new TotalMessage();
-
-        /*print(
-                    "The message is  ${total_message.total_message_list[0].data[0].message}");*/
-
         if (snapshot.hasData &&
             snapshot.data != null &&
             snapshot.data.snapshot.value != null) {
           Post message;
-
           message = Post(snapshot.data.snapshot.value);
-
           return ListView.builder(
               shrinkWrap: true,
               itemCount: message.data_list.length,

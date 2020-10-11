@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../Home.dart';
+import '../LogInAndRegistationPage.dart';
 import 'Pages/Admin.dart';
 import 'Pages/Donor.dart';
 import 'Pages/Distributor.dart';

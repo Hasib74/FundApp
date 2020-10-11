@@ -9,8 +9,7 @@ import 'package:fundapp/Src/FlutterDataProvider/fingurPrint.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
 
 import 'Src/Display/Home.dart';
-import 'Src/Home.dart';
-
+import 'Src/LogInAndRegistationPage.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

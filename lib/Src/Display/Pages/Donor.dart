@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundapp/Src/Display/Pages/Distributor.dart';
 import 'package:fundapp/Src/Display/Pages/Donor/Distributor.dart';
 import 'package:fundapp/Src/Display/Pages/Donor/Event.dart';
 import 'package:fundapp/Src/Display/Pages/Donor/SSLPage.dart';
@@ -6,6 +7,7 @@ import 'package:fundapp/Src/Utlis/Common.dart';
 
 import 'Admin/Employ.dart';
 import 'Donor/Home.dart';
+import 'Donor/NgoList.dart';
 
 class DonorPage extends StatefulWidget {
   @override
@@ -26,7 +28,9 @@ class _DonorPageState extends State<DonorPage> {
             ? Expanded(child: Home())
             : tab == "Event"
                 ? Expanded(child: new Event())
-                : Expanded(child: new SSlPage()),
+                : tab == "NGO"
+                    ? Expanded(child: new NgoList())
+                    : Expanded(child: new SSlPage()),
       ],
     );
   }
@@ -119,6 +123,33 @@ class _DonorPageState extends State<DonorPage> {
               "   Fund Transfer    ",
               style: TextStyle(
                   color: tab == "Fund Transfer" ? Colors.white : Colors.black,
+                  fontWeight: FontWeight.w500),
+            )),
+          ),
+        ),
+        Padding(padding: EdgeInsets.only(left: 10)),
+        InkWell(
+          onTap: () {
+            setState(() {
+              tab = "NGO";
+            });
+          },
+          child: Container(
+            // width: 50,
+            height: 24,
+            decoration: BoxDecoration(
+                color: tab == "NGO" ? Color(0xffFF5126) : Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black12, spreadRadius: 1, blurRadius: 0.5)
+                ]),
+
+            child: Center(
+                child: Text(
+              "   NGO    ",
+              style: TextStyle(
+                  color: tab == "NGO" ? Colors.white : Colors.black,
                   fontWeight: FontWeight.w500),
             )),
           ),

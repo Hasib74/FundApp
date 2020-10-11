@@ -145,7 +145,7 @@ class FB {
           }
 
           //if(value.value[""])
-        });
+        }).catchError((err)=>print(err));
       }
     });
 

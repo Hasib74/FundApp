@@ -14,26 +14,23 @@ class MessagePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream:
-          FirebaseDatabase.instance.reference().child(Common.message).onValue,
+      FirebaseDatabase.instance
+          .reference()
+          .child(Common.message)
+          .onValue,
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasData &&
             snapshot.hasError == false &&
             snapshot.data != null) {
-
-
           if (snapshot == null) {
             return Container();
-
           } else {
-
             Message message;
 
 
-            try{
-
+            try {
               message = Message(snapshot.data.snapshot.value);
-
-            }catch(err){
+            } catch (err) {
 
             }
             return ListView.builder(
@@ -46,7 +43,7 @@ class MessagePage extends StatelessWidget {
                 });
           }
         } else {
-            return Container();;
+          return Container();;
         }
       },
     );

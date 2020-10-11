@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fundapp/Src/Database/FB.dart';
@@ -8,9 +7,7 @@ import 'package:fundapp/Src/Registation/Donor.dart';
 import 'package:fundapp/Src/Registation/Ngo.dart';
 import 'package:fundapp/Src/Utlis/Common.dart';
 import 'package:fundapp/Src/Widget/Dialog.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Display/Home.dart';
 
 class LogInAndRegistationPage extends StatefulWidget {
@@ -84,6 +81,7 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
               : Container(),
           *
           * */
+
         child: Scaffold(
           backgroundColor: Color(0xffF7F7F7),
           body: SingleChildScrollView(
@@ -245,6 +243,7 @@ class _LogInAndRegistationPageState extends State<LogInAndRegistationPage> {
                 ),
                 child: TextField(
                   controller: _password_controller,
+                  obscureText: true,
                   decoration: new InputDecoration(
                     filled: true,
                     //fillColor: Colors.grey[300],
